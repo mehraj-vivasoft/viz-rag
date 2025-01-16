@@ -79,16 +79,37 @@ export default function QueryPage({
             {collections.map((collection, index) => (
               <div
                 key={collection.id}
-                className={`shadow-md rounded-lg p-6 hover:bg-gray-50 transition-shadow border border-slate-950 flex flex-col ${
+                className={`shadow-md rounded-lg p-6 transition-shadow border border-slate-950 flex flex-col ${
                   index < 3 && collection.distance <= 0.25
-                    ? "bg-green-100"
-                    : "bg-slate-200"
+                    ? "bg-green-100 hover:bg-green-200"
+                    : "bg-slate-200 hover:bg-slate-300"
                 }`}
               >
+                <div
+                  className={`mb-4 text-right border-y-2 border-slate-950 px-4 py-2 rounded-lg " 
+                      ${
+                        collection.distance <= 0.25
+                          ? "text-green-700 bg-green-100"
+                          : "text-red-700 bg-red-100"
+                      }
+                       ${index < 3 && collection.distance <= 0.25 ? "font-bold tracking-wide font-mono" : ""} `}
+                >
+                  {collection.distance && "Distance: " + collection.distance}
+                </div>
                 <div className="flex justify-between">
-                  <h2 className="text-white rounded-xl text-xl font-semibold mb-4 w-fit px-4 py-1.5 bg-black">
+                  <h2 className="text-white rounded-xl text-md font-semibold mb-4 w-fit px-4 py-1.5 bg-black">
                     {collection.properties.document_type}
                   </h2>
+                  <div className="flex gap-2 mb-4">
+                    {collection.properties.tag.map((tag) => (
+                      <span
+                        key={tag}
+                        className="bg-slate-950 text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-900 hover:scale-110 tranition ease-in-out duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                   {/* <MdDelete
                     className="text-slate-950 hover:text-red-800 hover:cursor-pointer hover:scale-110 transition ease-in-out duration-300"
                     size={32}
@@ -103,29 +124,6 @@ export default function QueryPage({
                   ></div>
                 </p>
                 <div className="flex-grow"></div>
-                <div className="flex gap-2 mb-4">
-                  {collection.properties.tag.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-slate-950 text-white px-4 py-2 rounded-lg hover:bg-gray-900 hover:scale-110 tranition ease-in-out duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div>
-                  <div
-                    className={`mt-4 text-right border-y-2 border-slate-950 px-4 py-2 rounded-lg " 
-                      ${
-                        collection.distance <= 0.25
-                          ? "text-green-700 bg-green-100"
-                          : "text-red-700 bg-red-100"
-                      }
-                        `}
-                  >
-                    {collection.distance && "Distance: " + collection.distance}
-                  </div>
-                </div>
               </div>
             ))}
           </div>
