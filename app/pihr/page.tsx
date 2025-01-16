@@ -14,16 +14,16 @@ const PiHRHome = () => {
 
   return (
     <div className="w-screen h-screen overflow-auto p-6">
-      <h1 className="text-3xl font-bold text-left mb-8 font-[family-name:var(--font-geist-mono)]">
+      <Link href={"/console"} className="text-3xl font-bold text-left mb-8 font-[family-name:var(--font-geist-mono)]">
         _VizRag x _PiHR Dataset
-      </h1>
+      </Link>
       {isLoading ? (
         <div className="flex flex-col gap-6 items-center justify-center w-full h-full">
           <div className="animate-spin rounded-full h-24 w-24 border-b-4 border-white" />
           <p className="ml-4 text-white">COLLECTIONS ARE BEING LOADED</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {collections.map((collection) => (
             <Link
               href={`/pihr/${collection}`}

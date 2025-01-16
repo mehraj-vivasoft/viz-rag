@@ -2,7 +2,6 @@
 import React from "react";
 import { getEntries } from "./controllers/getEntries";
 import { marked } from "marked";
-import { MdDelete } from "react-icons/md";
 import { useSearchParams } from "next/navigation";
 import PaginationComponent from "./Paginaton";
 import { PAGE_SIZE, PIHR_RAG } from "@/data/const";
@@ -43,11 +42,11 @@ export default function CollectionPage({
   }, [params.collection_name]);
 
   return (
-    <div className="w-screen h-full overflow-auto p-6">
+    <div className="w-screen min-h-screen flex flex-col overflow-auto p-6">
       <div className="flex flex-col md:flex-row justify-between">
-        <h1 className="text-3xl font-bold text-left mb-8 font-[family-name:var(--font-geist-mono)]">
+        <Link href={"/pihr"} className="text-3xl font-bold text-left mb-8 font-[family-name:var(--font-geist-mono)]">
           _VizRag x _PiHR Dataset
-        </h1>
+        </Link>
         <div className="flex gap-3 h-min">
           <Link
             href={`/pihr/${params.collection_name}/query`}
@@ -64,9 +63,14 @@ export default function CollectionPage({
         </div>
       </div>
       {isLoading ? (
-        <div className="flex flex-col gap-6 items-center justify-center w-full h-full">
-          <div className="animate-spin rounded-full h-24 w-24 border-b-4 border-white" />
-          <p className="ml-4 text-white">COLLECTIONS ARE BEING LOADED</p>
+        <div className="flex flex-col gap-6 items-center justify-center flex-grow">
+          <div className="relative">
+            <div className="animate-spin rounded-full h-24 w-24 border-4 border-t-transparent border-r-transparent border-gradient-to-br from-purple-500 to-blue-500 shadow-lg" />
+            <div className="absolute inset-0 rounded-full border-2 border-dashed border-slate-900 animate-ping" />
+          </div>
+          <p className="text-2xl font-semibold mt-8 font-serif bg-gradient-to-t from-black to-slate-400 bg-clip-text text-transparent">
+            COLLECTIONS ARE BEING LOADED
+          </p>
         </div>
       ) : (
         <>
@@ -80,10 +84,10 @@ export default function CollectionPage({
                   <h2 className="text-white rounded-xl text-xl font-semibold mb-4 w-fit px-4 py-1.5 bg-black">
                     {collection.properties.document_type}
                   </h2>
-                  <MdDelete
+                  {/* <MdDelete
                     className="text-slate-950 hover:text-red-800 hover:cursor-pointer hover:scale-110 transition ease-in-out duration-300"
                     size={32}
-                  />
+                  /> */}
                 </div>
                 <p className="text-gray-900 mb-6">
                   <div
