@@ -19,6 +19,7 @@ export default function FeedbackPage() {
       rating: number;
       conversation_id: string;
       user_message: string;
+      user_id: string;
       ai_message: string;
     }[]
   >([]);
@@ -34,6 +35,7 @@ export default function FeedbackPage() {
             rating: number;
             conversation_id: string;
             user_message: string;
+            user_id: string;
             ai_message: string;
           }) => ({
             id: f.id,
@@ -41,6 +43,7 @@ export default function FeedbackPage() {
             rating: f.rating,
             conversation_id: f.conversation_id,
             user_message: f.user_message,
+            user_id: f.user_id,
             ai_message: f.ai_message,
           })
         ) || []
@@ -63,10 +66,10 @@ export default function FeedbackPage() {
     <div className="w-screen min-h-screen overflow-auto p-6 flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">
-          Feedback ({isLiked === "true" ? "Positive" : "Negative"})
+          {isLiked === "true" ? "Positive" : "Negative"} Feedbacks
         </h1>
         <p className="text-sm text-gray-500">
-          Total: {totalFeedbacks} feedback{totalFeedbacks !== 1 ? "s" : ""}
+          {totalFeedbacks} feedback{totalFeedbacks !== 1 ? "s" : ""} found
         </p>
       </div>
 
@@ -97,7 +100,10 @@ export default function FeedbackPage() {
                   </span>
                 </div>
                 <span className="text-sm text-gray-500">
-                  ID: {feedback.conversation_id}
+                  conv: {feedback.conversation_id}
+                </span>
+                <span className="text-sm text-gray-500">
+                  user: {feedback.conversation_id}
                 </span>
               </div>
 
