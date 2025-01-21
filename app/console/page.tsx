@@ -6,6 +6,7 @@ type Project = {
   title: string;
   description: string;
   link: string;
+  feedbackLink: string;
 };
 
 const projects: Project[] = [
@@ -15,6 +16,7 @@ const projects: Project[] = [
     description:
       "The PiHR Dataset is a collection of data related to the PIHR and AutoQuery Integration.",
     link: "/pihr",
+    feedbackLink: "/pihr/feedbacks?is_liked=true&page=1",    
   },
 ];
 
@@ -42,6 +44,12 @@ const VizRagConsole: React.FC = () => {
               className="inline-block bg-slate-950 text-white px-4 py-2 rounded hover:bg-gray-900 hover:scale-110 tranition ease-in-out duration-300"
             >
               Manage
+            </a>
+            <a
+              href={project.feedbackLink}
+              className="inline-block bg-slate-950 text-white px-4 py-2 rounded hover:bg-gray-900 hover:scale-110 tranition ease-in-out duration-300 ml-3"
+            >
+              Feedbacks
             </a>
           </div>
         ))}
