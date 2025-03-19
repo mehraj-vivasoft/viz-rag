@@ -80,7 +80,7 @@ export default function QueryPage({
               <div
                 key={collection.id}
                 className={`shadow-md rounded-lg p-6 transition-shadow border border-slate-950 flex flex-col ${
-                  index < 3 && collection.distance <= 0.25
+                  index < 5 && collection.distance <= 0.26
                     ? "bg-green-100 hover:bg-green-200"
                     : "bg-slate-200 hover:bg-slate-300"
                 }`}
@@ -88,11 +88,11 @@ export default function QueryPage({
                 <div
                   className={`mb-4 text-right border-y-2 border-slate-950 px-4 py-2 rounded-lg " 
                       ${
-                        collection.distance <= 0.25
+                        collection.distance <= 0.26
                           ? "text-green-700 bg-green-100"
                           : "text-red-700 bg-red-100"
                       }
-                       ${index < 3 && collection.distance <= 0.25 ? "font-bold tracking-wide font-mono" : ""} `}
+                       ${index < 3 && collection.distance <= 0.26 ? "font-bold tracking-wide font-mono" : ""} `}
                 >
                   {collection.distance && "Distance: " + collection.distance}
                 </div>
