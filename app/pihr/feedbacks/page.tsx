@@ -125,8 +125,9 @@ const FeedbackPage = () => {
   };
 
   const getRatingColor = (rating: number) => {
-    if (rating >= 4) return "text-green-600 bg-green-50 border-green-200";
-    if (rating <= 2) return "text-red-600 bg-red-50 border-red-200";
+    if (rating < 1) return "text-gray-600 bg-gray-50 border-gray-200";
+    if (rating >= 7) return "text-green-600 bg-green-50 border-green-200";
+    if (rating <= 3) return "text-red-600 bg-red-50 border-red-200";
     return "text-yellow-600 bg-yellow-50 border-yellow-200";
   };
 
@@ -356,7 +357,9 @@ const FeedbackPage = () => {
                         <FaThumbsDown className="text-red-600 mr-2" />
                       )}
                       <span className="font-medium">
-                        Rating: {feedback.rating}
+                        {feedback.rating > 0
+                          ? `Rating: ${feedback.rating}`
+                          : "N/A"}
                       </span>
                     </div>
                   </div>
@@ -426,6 +429,7 @@ const FeedbackPage = () => {
                   </div>
 
                   <div className="flex items-center justify-between mt-2">
+                    <div className="flex-grow"></div>
                     <button
                       onClick={() => toggleFeedbackExpansion(feedback.id)}
                       className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
